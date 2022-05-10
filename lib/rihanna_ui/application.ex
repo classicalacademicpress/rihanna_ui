@@ -10,9 +10,11 @@ defmodule RihannaUI.Application do
       {Phoenix.PubSub, name: RihannaUI.PubSub},
       %{
         id: Rihanna.Job.Postgrex,
-        start: {Postgrex, :start_link, [Keyword.put(database_opts(), :name, Rihanna.Job.Postgrex)]}
+        start:
+          {Postgrex, :start_link,
+           [Keyword.put(database_opts(), :name, Rihanna.Job.Postgrex)]}
       },
-      {RihannaUIWeb.Endpoint, []},
+      {RihannaUIWeb.Endpoint, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

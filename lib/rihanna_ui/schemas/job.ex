@@ -3,10 +3,10 @@ defmodule RihannaUI.Job do
   require Ecto.Query, as: Query
 
   schema Rihanna.Job.table() do
-    field :term, RihannaUI.ETF
-    field :enqueued_at, :utc_datetime
-    field :failed_at, :utc_datetime
-    field :fail_reason, :string
+    field(:term, RihannaUI.ETF)
+    field(:enqueued_at, :utc_datetime)
+    field(:failed_at, :utc_datetime)
+    field(:fail_reason, :string)
   end
 
   def enqueued() do
@@ -31,7 +31,6 @@ defmodule RihannaUI.Job do
       where: lock.locktype == "advisory"
     )
     |> RihannaUI.Repo.all()
-
   end
 
   def failed() do

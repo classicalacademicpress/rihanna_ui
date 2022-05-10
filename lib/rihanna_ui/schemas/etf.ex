@@ -14,9 +14,11 @@ defmodule RihannaUI.ETF do
     {:ok, :erlang.term_to_binary(mfa)}
   end
 
-  def cast(mfa = {mod, fun, args}) when is_atom(mod) and is_atom(fun) and is_list(args) do
+  def cast(mfa = {mod, fun, args})
+      when is_atom(mod) and is_atom(fun) and is_list(args) do
     {:ok, mfa}
   end
+
   def cast(_), do: :error
 
   def embed_as(_), do: :self

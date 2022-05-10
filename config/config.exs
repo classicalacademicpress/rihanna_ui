@@ -16,7 +16,8 @@ config :rihanna_ui, RihannaUI.Repo,
 # Configures the endpoint
 config :rihanna_ui, RihannaUIWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "aWZOvWfKl/FqR2bRCD7kIMQxbe8eUqpA9RjbGZE6ZuEyO2zXwWTL9PimLNVVxzeG",
+  secret_key_base:
+    "aWZOvWfKl/FqR2bRCD7kIMQxbe8eUqpA9RjbGZE6ZuEyO2zXwWTL9PimLNVVxzeG",
   render_errors: [view: RihannaUIWeb.ErrorView, accepts: ~w(html json)],
   pubsub_server: RihannaUI.PubSub
 
@@ -28,8 +29,8 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :rihanna, jobs_table_name: (System.get_env("DB_TABLE") || "rihanna_jobs")
+config :rihanna, jobs_table_name: System.get_env("DB_TABLE") || "rihanna_jobs"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

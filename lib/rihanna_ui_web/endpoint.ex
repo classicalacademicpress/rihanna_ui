@@ -8,7 +8,9 @@ defmodule RihannaUIWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :rihanna_ui, gzip: false,
+    at: "/",
+    from: :rihanna_ui,
+    gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -55,6 +57,6 @@ defmodule RihannaUIWeb.Endpoint do
   """
   def init(_key, config) do
     port = System.get_env("PORT") || 4000
-    {:ok, Keyword.put(config, :http, [port: port])}
+    {:ok, Keyword.put(config, :http, port: port)}
   end
 end
