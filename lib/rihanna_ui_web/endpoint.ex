@@ -39,6 +39,14 @@ defmodule RihannaUIWeb.Endpoint do
 
   plug RihannaUIWeb.Router
 
+  plug :auth
+
+  defp auth(conn, _opts) do
+    username = System.fetch_env!("AUTH_USERNAME")
+    password = System.fetch_env!("AUTH_PASSWORD")
+    Plug.BasicAuth.basic_auth(conn, username: username, password: password)
+  end
+
   @doc """
   Callback invoked for dynamically configuring the endpoint.
 
