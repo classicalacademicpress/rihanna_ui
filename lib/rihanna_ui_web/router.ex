@@ -3,6 +3,7 @@ defmodule RihannaUIWeb.Router do
 
   pipeline :browser do
     plug :accepts, ["html"]
+    plug :auth
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
@@ -30,4 +31,10 @@ defmodule RihannaUIWeb.Router do
   # scope "/api", RihannaUIWeb do
   #   pipe_through :api
   # end
+
+  defp auth(conn, _opts) do
+    username = System.fetch_env!("AUTH_USERNAME")
+    password = System.fetch_env!("AUTH_PASSWORD")
+    Plug.BasicAuth.basic_auth(conn, username: username, password: password)
+  end
 end
